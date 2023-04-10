@@ -1,6 +1,8 @@
 IP=$(curl -s https://ip.thomas07.eu)
 WAIT_TIME=200
 
+## Toevoegen dat die ook in de .env file het domein aanpast voor op een panel
+
 echo "By using this script with SSL, you automatically agree to the terms and conditions of Let's Encrypt."
 
 webserver_check() {
@@ -114,6 +116,7 @@ panel_configuration() {
         sudo a2enmod ssl
         sudo systemctl restart apache2
     fi
+    sed -i "s#APP_URL=.*#APP_URL=https://$FQDN#" /var/www/pterodactyl/.env
 }
 
 node_configuration() {
