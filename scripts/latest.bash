@@ -268,9 +268,9 @@ setup_node_on_panel() {
     cd /var/www/pterodactyl 
     php artisan p:location:make --short=EARTH --long="This server is hosted on Earth"
     if [ "$USE_SSL" == true ]; then
-        php artisan p:node:make --name=Node01 --description=Node01 --locationId=1 --fqdn=$FQDN --public=1 --scheme=https --proxy=0 --maintenance=0 --maxMemory=$((MEMORY / 1024)) --overallocateMEMORY=0 --maxDisk=$DISK_SPACE --overallocateDisk=0 --uploadSize=100 --daemonListeningPort=8080 --daemonSFTPPort=2022 --daemonBase=/var/lib/pterodactyl/volumes
+        php artisan p:node:make --name=Node01 --description=Node01 --locationId=1 --fqdn=$FQDN --public=1 --scheme=https --proxy=0 --maintenance=0 --maxMemory=$((MEMORY / 1024)) --overallocateMemory=0 --maxDisk=$DISK_SPACE --overallocateDisk=0 --uploadSize=100 --daemonListeningPort=8080 --daemonSFTPPort=2022 --daemonBase=/var/lib/pterodactyl/volumes
     elif [ "$USE_SSL" == false ]; then
-        php artisan p:node:make --name=Node01 --description=Node01 --locationId=1 --fqdn=$FQDN --public=1 --scheme=http --proxy=0 --maintenance=0 --maxMemory=$((MEMORY / 1024)) --overallocateMEMORY=0 --maxDisk=$DISK_SPACE --overallocateDisk=0 --uploadSize=100 --daemonListeningPort=8080 --daemonSFTPPort=2022 --daemonBase=/var/lib/pterodactyl/volumes
+        php artisan p:node:make --name=Node01 --description=Node01 --locationId=1 --fqdn=$FQDN --public=1 --scheme=http --proxy=0 --maintenance=0 --maxMemory=$((MEMORY / 1024)) --overallocateMemory=0 --maxDisk=$DISK_SPACE --overallocateDisk=0 --uploadSize=100 --daemonListeningPort=8080 --daemonSFTPPort=2022 --daemonBase=/var/lib/pterodactyl/volumes
     fi
     php artisan p:node:configuration 1 --format=yml > /etc/pterodactyl/config.yml
 }
