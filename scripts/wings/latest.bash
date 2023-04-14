@@ -75,7 +75,7 @@ installing_wings() {
 }
 
 daemonizing() {
-    curl -o /etc/systemd/system/wings.service https://github.com/Thomas5300/pterodactyl-installation-script/configurations/wings/wings.service
+    curl -o /etc/systemd/system/wings.service https://raw.githubusercontent.com/Thomas5300/pterodactyl-installation-script/main/configurations/wings/wings.service
     systemctl enable --now wings
 }
 

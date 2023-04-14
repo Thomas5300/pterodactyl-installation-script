@@ -156,7 +156,7 @@ crontab_configuration() {
 }
 
 create_queue_worker() {
-    curl -o /etc/systemd/system/pteroq.service https://github.com/Thomas5300/pterodactyl-installation-script/configurations/panel/pteroq.service
+    curl -o /etc/systemd/system/pteroq.service https://raw.githubusercontent.com/Thomas5300/pterodactyl-installation-script/main/configurations/panel/pteroq.service
     sudo systemctl enable --now redis-server
     sudo systemctl enable --now pteroq.service
 }
@@ -172,13 +172,13 @@ nginx_configuration() {
     rm /etc/nginx/sites-enabled/default
     if [ "$USE_SSL" == true ]; then
         nginx_certbot
-        curl -o /etc/nginx/sites-available/pterodactyl.conf https://github.com/Thomas5300/pterodactyl-installation-script/configurations/panel/webserver/nginx/ssl_pterodactyl.conf
+        curl -o /etc/nginx/sites-available/pterodactyl.conf https://raw.githubusercontent.com/Thomas5300/pterodactyl-installation-script/main/configurations/panel/webserver/nginx/ssl_pterodactyl.conf
         sed -i -e "s/<domain>/${FQDN}/g" /etc/nginx/sites-available/pterodactyl.conf
         sudo ln -s /etc/nginx/sites-available/pterodactyl.conf /etc/nginx/sites-enabled/pterodactyl.conf
         sudo systemctl restart nginx
         crontab -l > mycron && echo "0 23 * * * certbot renew --quiet --deploy-hook \"systemctl restart nginx\"" >> mycron && crontab mycron && rm mycron
     elif [ "$USE_SSL" == false ]; then
-        curl -o /etc/nginx/sites-available/pterodactyl.conf https://github.com/Thomas5300/pterodactyl-installation-script/configurations/panel/webserver/nginx/pterodactyl.conf
+        curl -o /etc/nginx/sites-available/pterodactyl.conf https://raw.githubusercontent.com/Thomas5300/pterodactyl-installation-script/main/configurations/panel/webserver/nginx/pterodactyl.conf
         sed -i -e "s/<domain>/${FQDN}/g" /etc/nginx/sites-available/pterodactyl.conf
         sudo ln -s /etc/nginx/sites-available/pterodactyl.conf /etc/nginx/sites-enabled/pterodactyl.conf
         sudo systemctl restart nginx
@@ -196,7 +196,7 @@ apache2_configuration() {
     a2dissite 000-default.conf
     if [ "$USE_SSL" == true ]; then
         apache2_certbot
-        curl -o /etc/apache2/sites-available/pterodactyl.conf https://github.com/Thomas5300/pterodactyl-installation-script/configurations/panel/webserver/apache2/ssl_pterodactyl.conf
+        curl -o /etc/apache2/sites-available/pterodactyl.conf https://raw.githubusercontent.com/Thomas5300/pterodactyl-installation-script/main/configurations/panel/webserver/apache2/ssl_pterodactyl.conf
         sed -i -e "s/<domain>/${FQDN}/g" /etc/apache2/sites-available/pterodactyl.conf
         sudo ln -s /etc/apache2/sites-available/pterodactyl.conf /etc/apache2/sites-enabled/pterodactyl.conf
         sudo a2enmod rewrite
@@ -204,7 +204,7 @@ apache2_configuration() {
         sudo systemctl restart apache2
         crontab -l > mycron && echo "0 23 * * * certbot renew --quiet --deploy-hook \"systemctl restart apache2\"" >> mycron && crontab mycron && rm mycron
     elif [ "$USE_SSL" == false ]; then
-        curl -o /etc/apache2/sites-available/pterodactyl.conf https://github.com/Thomas5300/pterodactyl-installation-script/configurations/panel/webserver/apache2/pterodactyl.conf
+        curl -o /etc/apache2/sites-available/pterodactyl.conf https://raw.githubusercontent.com/Thomas5300/pterodactyl-installation-script/main/configurations/panel/webserver/apache2/pterodactyl.conf
         sed -i -e "s/<domain>/${FQDN}/g" /etc/apache2/sites-available/pterodactyl.conf
         sudo ln -s /etc/apache2/sites-available/pterodactyl.conf /etc/apache2/sites-enabled/pterodactyl.conf
         sudo a2enmod rewrite
@@ -215,7 +215,7 @@ apache2_configuration() {
 phpmyadmin_installation() {
     cd /var/www/pterodactyl/public 
     mkdir phpmyadmin
-    wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-english.tar.gz
+    wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.zip
     tar xvzf phpMyAdmin-latest-english.tar.gz
     mv phpMyAdmin-*-english/* phpmyadmin
     rm -rf phpMyAdmin-*-english

@@ -100,7 +100,7 @@ panel_configuration() {
         sudo service stop nginx
         rm -f /etc/nginx/sites-available/pterodactyl.conf
         rm -f /etc/nginx/sites-enabled/pterodactyl.conf
-        curl -o /etc/nginx/sites-available/pterodactyl.conf https://github.com/Thomas5300/pterodactyl-installation-script/configurations/panel/webserver/nginx/ssl_pterodactyl.conf
+        curl -o /etc/nginx/sites-available/pterodactyl.conf https://raw.githubusercontent.com/Thomas5300/pterodactyl-installation-script/main/configurations/panel/webserver/nginx/ssl_pterodactyl.conf 
         sed -i -e "s/<domain>/${FQDN}/g" /etc/nginx/sites-available/pterodactyl.conf
         sudo ln -s /etc/nginx/sites-available/pterodactyl.conf /etc/nginx/sites-enabled/pterodactyl.conf
         sudo systemctl restart nginx
@@ -109,7 +109,7 @@ panel_configuration() {
         rm -f /etc/apache2/sites-available/pterodactyl.conf
         rm -f /etc/apache2/sites-enabled/pterodactyl.conf
         a2dissite 000-default.conf
-        curl -o /etc/apache2/sites-available/pterodactyl.conf https://github.com/Thomas5300/pterodactyl-installation-script/configurations/panel/webserver/apache2/ssl_pterodactyl.conf
+        curl -o /etc/apache2/sites-available/pterodactyl.conf https://raw.githubusercontent.com/Thomas5300/pterodactyl-installation-script/main/configurations/panel/webserver/apache2/ssl_pterodactyl.conf
         sed -i -e "s/<domain>/${FQDN}/g" /etc/apache2/sites-available/pterodactyl.conf
         sudo ln -s /etc/apache2/sites-available/pterodactyl.conf /etc/apache2/sites-enabled/pterodactyl.conf
         sudo a2enmod rewrite
