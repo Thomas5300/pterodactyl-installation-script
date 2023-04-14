@@ -238,7 +238,7 @@ apache2_configuration() {
 phpmyadmin_installation() {
     cd /var/www/pterodactyl/public 
     mkdir phpmyadmin
-    wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-english.tar.gz
+    wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.zip
     tar xvzf phpMyAdmin-latest-english.tar.gz
     mv phpMyAdmin-*-english/* phpmyadmin
     rm -rf phpMyAdmin-*-english
