@@ -28,4 +28,5 @@ You can use the script on these operating systems, we are also working on adding
 ## Roadmap
 
 - If you only install a wings, there is an option to automatically connect it to your panel
+- Ability to use Cloudflare Proxied
 
